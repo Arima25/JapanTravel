@@ -1,0 +1,531 @@
+
+
+.header h1{
+  padding-top:260px;
+  padding-bottom:0;
+  font-size:55px;
+}
+
+.header p{
+  margin:18px;
+}
+body {
+  font-family:Sans-serif;
+  background-color: var(--color-bg);
+}
+
+/* Page structure */
+.wrapper {
+  min-height: var(--wrapper-height);
+  display: grid;
+  place-items: center;
+  margin: 0 1rem;
+}
+
+
+/*header-logo-login*/
+.header{
+  height:100%;
+  background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),url(https://png.pngtree.com/thumb_back/fh260/back_our/20190619/ourmid/pngtree-japan-travel-poster-background-image_131504.jpg);
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+  padding-top:20px;
+}
+  
+  .header img{
+    width:180px;
+    float:left;
+  }
+
+.login-btn{
+  width:110px;
+  padding:10px 0; 
+  outline:none!important;
+  border:2px solid black;
+  border-radius:50px;
+  background:transparent;
+  color:black;
+  float:right;
+  
+}
+.input-group{
+  width:90%;
+  max-width:500px;
+  background:#ffffff;
+  margin:auto;
+  padding:2px;
+}
+.travel{
+  display:flex;
+  justify-content:center;
+  color:black;
+}
+.form-control{
+  border:0 !important;
+  border-radius: 30px !important;
+  margin:2px;
+  box-shadow:none !important;
+  
+}
+
+.input-group-text{
+  display:flex;
+  justify-content: center;
+  width:100px;
+  background-image: Linear-gradient (#00ff7e, #1f3d90);
+  border:0 !important;
+  color:#115C5D  !important;
+  padding: 0 25px !important;
+  border-radius:30px !important;
+  box-shadow:none !important;
+}
+
+
+
+/* Button - Add it from the README instructions */
+button,
+input {
+  font-family: inherit;
+  font-size: 100%;
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 2rem 3rem;
+  transition: 500ms;
+}
+
+/
+
+
+
+
+
+
+
+
+/* Interactive image */
+.illustration:active {
+  transform: translateY(5px);
+}
+
+/* Button rotate
+- Toggling this class on and off will rotate it forward and back
+- The button transition property above determines the speed of rotation (500ms)
+*/
+.rotated {
+  transform: rotate(360deg);
+}
+img{
+  width: 80%;
+  margin: auto;
+  }
+
+a:visited {
+  color:blue;
+}
+
+a:hover {
+  color: red;
+}
+
+.parallax {
+  /* The image used */
+ 
+
+  /* Set a specific height */
+  min-height: 500px; 
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+
+/* heading styles, whole page alignment */
+
+body{
+    text-align: center;
+}
+
+
+
+h2{
+    font-family: 'Avenir', sans-serif;
+    width: 60%;
+    margin: auto;
+    margin-top: 15px;
+    font-size: 30px;
+}
+
+/* navbar list styles */
+
+a{
+    color: inherit;
+    text-decoration: none;
+}
+
+ul {
+	list-style: none;
+}
+
+li{
+    width: 120px;
+    background-color: white;
+    padding: 7px;
+    border-radius: 15px;
+    border-color: black;
+    border-style: dashed;
+    border-width: 1px;
+    display: inline-block;
+    margin-left: 25px;
+    margin-right: 25px;
+    font-family: 'Avenir', sans-serif;
+  overflow: auto;
+}
+
+a:hover {
+    font-weight: bold;
+    color: inherit;
+}
+
+/* webpage background colors */
+
+.R{
+    background-color: rgb(252, 127, 127);
+}
+
+
+
+.G{
+    background-color: rgb(121, 211, 143);
+}
+
+.B{
+    background-color: skyblue;
+}
+
+.P{
+    background-color: plum;
+}
+/* navbar text colors */
+.red{
+    color: rgb(223, 0, 0);
+}
+
+.orange{
+    color: rgb(255, 123, 0);
+}
+
+
+.green{
+    color: rgb(0, 134, 0);
+}
+
+.blue{
+    color: rgb(0, 110, 253);
+}
+
+.purple{
+    color: rgb(92, 0, 134);
+}
+
+.black{
+    color: rgb(0, 0, 0);
+}
+
+/* navbar hover backgrounds */
+
+.red:hover{
+    background-color: rgb(252, 127, 127);
+}
+
+.orange:hover{
+    background-color: orange;
+}
+
+
+
+.green:hover{
+    background-color: rgb(94, 255, 94);
+}
+
+.blue:hover{
+    background-color: skyblue;
+}
+
+.purple:hover{
+    background-color: plum;
+}
+
+.black:hover{
+    background-color: rgb(216, 216, 216);
+}
+
+
+
+/* image margin on home and purple pages */
+
+img{
+    margin-top: 50px;
+    width: 70%;
+    align-items: center;
+  position: relative;
+}
+/*card*/
+    .maincontainer{ 
+    position: relative;   
+    width: 250px;   
+    height: 300px;       
+  }  
+  
+  .thecard
+  { 
+    position: absolute;   
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;   
+    transition: all 0.5s ease;    
+    align-items:center;
+  }
+.thecard:hover{
+  transform: rotateY(180deg);
+}
+  .thefront
+{
+  position:absolute;
+  display:flex;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background: #B688CD;
+  color: #333333;
+   font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  align-items:center;
+  
+}
+.theback
+{
+  display:flex;
+  position:absolute;
+  width:100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background: #fafafa;
+  color: #333333;
+  transform: rotateY(180deg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-color:blue;
+  align-items:center;
+}
+
+  .flex-container {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  
+}
+
+
+
+
+.japan{
+  padding:0px;
+}
+
+/*resize*/
+@media only screen and (max-width: 600px) {
+body {
+    background-color: lightblue;
+  }
+}
+
+@media screen and (max-width: 550px) {
+    .container {
+        width: 375px;
+    }
+    .box-head {
+        height: 260px;
+    }
+    .mode-dark-light {
+        width: 100%;
+        border-top: 1px solid #838BB2;
+        padding-top: 25px;
+        margin-top: 25px;
+        margin-bottom: 30px;
+  }
+}
+
+/*features*/
+    .features{
+        padding:100px 0;
+      }
+      .feature-img{
+        width:100%;
+        position:relative;
+        
+      }
+
+      .price{
+        width:50px;
+        height:50px;
+        background:#ff5722;
+        color:black;
+        font-weight:600;
+        border-radius:50%;
+        padding:10px;
+        box-shadow:0 0 10px 1px rgba(37,73,214,0.18);
+        position:absolute;
+        left:25px;
+        bottom:-25px;
+      }
+      
+      .rating{
+        padding:3px;
+        float:right;
+        background:#ffffff;
+        bottom:-1px;
+        right:0;
+        position:absolute;
+        
+      }
+
+      .features .fa{
+        font-size:15px;
+        color:#ff5722;
+      }
+.features-details{
+        padding:20px;
+        text-align:justify;
+      }
+
+      .features-details h4{
+        font-weight:600;
+        padding:20px;
+      }
+      .features-details .fa{
+        margin-right:20px;
+        
+      }
+      .feature-box{
+        box-shadow:0,0,10px,1px rgba(37,73,214,0.18);
+        margin-bottom:30px;
+      }
+
+/*gallery*/
+.gallery{
+  padding:100px 0;
+  background:#efefef;
+}
+
+.gallery-box img{
+  width:100%;
+  border-radius:10px;
+  cursor:pointer;
+  transition:1s;
+  left:15px;
+}
+.gallery-box img:hover{
+  transform:scale(1.1);
+  
+  
+}
+.gallery-box h4{
+  display:block;
+  top:50%;
+  left:50%;
+  font-size:20px;
+  color:#ffffff;
+  text-shadow:-2px 2px 2px #000000;
+  font-weight:600;
+  position:absolute;
+  transform:translate(-50%,-50%)
+}
+.gallery-box{
+  position:relative;
+  margin-bottom:30px;
+  
+}
+
+.banner{
+  height:80%;
+  background-image: url(https://www.japanrailpass.com.au/wp-content/uploads/2017/08/1000x667xmt.Fuji-in-kawaguchiko-lakeKawaguchiko-lake-of-JapanMount-Fuji-Kawaguchi-Lake.jpg.pagespeed.ic.8K2oS5rLke.jpg);
+  background-position:center;
+  background-size:cover;
+  background-attachment:fixed;
+  
+}
+/*nav fix*/
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  align-self:flex-start;
+  flex-flow:  row nowrap;
+}
+
+.nav li{
+  padding:1rem;
+  list-style:none;
+  border:5px solid Purple;
+}
+
+
+.container{
+  border:1px solid blue;
+      }
+  .center{
+    align-items:center;
+  }
+    
+  
+/*footer*/
+.footer{
+  padding:100px 20px 20px;
+  background-image: linear-gradient(#2d557d,#9610fb);
+  color:#ffffff;
+}
+
+.footer-logo{
+  width:150px;
+  margin-top:15px;
+  margin-bottom:15px;
+}
+
+.footer h4{
+  text-align:left;
+  margin-top:15px;
+  margin-bottom:25px;
+}
+
+.footer p{
+  font-size:12px;
+  text-align:justify;
+  padding-right:35px;
+}
+
+.footer .row. fa{
+  padding-right:20px;
+  font-size:15px;
+}
+
+.footer hr{
+  margin-top:10px;
+  background:#efefef;
+}
+
+.fa-dragon{
+  margin:0 5px;
+  color: #ff4444;
+}
+
+.footer .copyright{
+  text-align:center;
+}
