@@ -398,6 +398,11 @@ body {
         text-align:justify;
       }
 
+/* Utility to hide elements during filtering */
+.hide {
+  display: none !important;
+}
+
       .features-details h4{
         font-weight:600;
         padding:20px;
@@ -469,10 +474,6 @@ body {
   border:5px solid Purple;
 }
 
-
-.container{
-  border:1px solid blue;
-      }
   .center{
     align-items:center;
   }
@@ -503,7 +504,7 @@ body {
   padding-right:35px;
 }
 
-.footer .row. fa{
+.footer .row fa{
   padding-right:20px;
   font-size:15px;
 }
@@ -521,3 +522,4 @@ body {
 .footer .copyright{
   text-align:center;
 }
+

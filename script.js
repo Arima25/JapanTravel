@@ -12,12 +12,12 @@ Make the "Click me!" button rotate when the visitor clicks it:
 - First add the button to the page by following the "Next steps" in the README
 */
 const btn = document.querySelector("button"); // Get the button from the page
-// Detect clicks on the button
+// Detect clicks on the button (use addEventListener and guard for existence)
 if (btn) {
-  btn.onclick = function() {
+  btn.addEventListener('click', () => {
     // The JS works in conjunction with the 'rotated' code in style.css
     btn.classList.toggle("rotated");
-  };
+  });
 }
 
 // This is a single line JS comment
@@ -34,38 +34,48 @@ let themeDark = true;
 eventsListener();
 
 function eventsListener() {
+  // Restore theme only if the theme link element exists
+  if (theme) {
     document.addEventListener('DOMContentLoaded', () => {
-        chargeThemeLocalStorage();
-    })
+      chargeThemeLocalStorage();
+    });
+  }
+  // Attach mode toggle click only if the element exists
+  if (modeSelector) {
     modeSelector.addEventListener('click', changeMode);
+  }
 }
 
 function changeMode() {
-    if (themeDark) {
-        theme.href = 'stylesheets/theme-light.css';
-        modeSelector.classList.add('mode--right');
-    }
-    else {
-        theme.href = 'stylesheets/theme-dark.css'
-        modeSelector.classList.remove('mode--right');
-    }
-    saveThemeLocalStorage(theme.href);
-    themeDark = !themeDark;
+  // Nothing to do if required elements are missing
+  if (!theme || !modeSelector) return;
+  if (themeDark) {
+    theme.href = 'stylesheets/theme-light.css';
+    modeSelector.classList.add('mode--right');
+  }
+  else {
+    theme.href = 'stylesheets/theme-dark.css';
+    modeSelector.classList.remove('mode--right');
+  }
+  saveThemeLocalStorage(theme.href);
+  themeDark = !themeDark;
 }
 
-function saveThemeLocalStorage(theme) {
-    localStorage.setItem('themeSocial', theme);
+function saveThemeLocalStorage(themeHref) {
+  if (!themeHref) return;
+  localStorage.setItem('themeSocial', themeHref);
 }
 
 function chargeThemeLocalStorage() {
-    const themeLS = localStorage.getItem('themeSocial');
-    if (themeLS) {
-        theme.href = themeLS;
-        if (themeLS.includes('light')) {
-            themeDark = false;
-            modeSelector.classList.add('mode--right');
-        };
+  if (!theme) return;
+  const themeLS = localStorage.getItem('themeSocial');
+  if (themeLS) {
+    theme.href = themeLS;
+    if (themeLS.includes('light') && modeSelector) {
+      themeDark = false;
+      modeSelector.classList.add('mode--right');
     }
+  }
 }
 
 
@@ -98,3 +108,39 @@ fetch("https://jsonplaceholder.typicode.com/users")
       return { name: user.name, email: user.email, element: card }
     })
   })
+
+// --- Simple search for featured destinations on the index page ---
+function initFeaturedSearch() {
+  const input = document.querySelector('#search-input');
+  const btn = document.querySelector('#search-btn');
+  if (!input) return; // nothing to do on pages without search
+
+  const featureEls = Array.from(document.querySelectorAll('[data-city]'));
+
+  function runSearch() {
+    const q = input.value.trim().toLowerCase();
+    if (!q) {
+      // show all if empty
+      featureEls.forEach(el => el.classList.remove('hide'));
+      return;
+    }
+    featureEls.forEach(el => {
+      const city = (el.getAttribute('data-city') || '').toLowerCase();
+      const matches = city.includes(q);
+      el.classList.toggle('hide', !matches);
+    });
+  }
+
+  // button click
+  if (btn) btn.addEventListener('click', runSearch);
+  // Enter key in input
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      runSearch();
+    }
+  });
+}
+
+// Initialize featured search on DOM ready
+document.addEventListener('DOMContentLoaded', initFeaturedSearch);
