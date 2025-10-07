@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Japanese Food Guide</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to your CSS (root stylesheet) -->
+    <link rel="stylesheet" href="../../style.css">
+    <!-- page-specific stylesheet (located in this folder) -->
+    <link rel="stylesheet" href="food.css">
+</head>
+<body>
+        <!-- Navigation (match main site) -->
+        <nav>
+            <ul>
+                <li class="home">
+                    <a href="../../index.html">Home</a>
+                </li>
+                <li class="red">
+                    <a href="./food.html">Food</a>
+                </li>
+                <li class="blue">
+                    <a href="../culture.html">Culture</a>
+                </li>
+                <li class="black">
+                    <a href="../fashion.html">Fashion</a>
+                </li>
+                <li class="green">
+                    <a href="../navigate.html">Most visited</a>
+                </li>
+            </ul>
+        </nav>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Japanese Food Guide</h1>
+        <p>Explore iconic dishes and find top restaurants on your travels!</p>
+    </section>
+    <!-- Food Grid -->
+    <section class="food-grid" id="foodGrid">
+        <div class="food-card" onclick="openModal('Sushi')">
+            <img src="../../asset/sushi.jpg" alt="Sushi">
+            <h2>Sushi</h2>
+            <p>The most famous Japanese dish: vinegared rice topped with fresh seafood.</p>
+        </div>
+        <div class="food-card" onclick="openModal('Ramen')">
+            <img src="../../asset/ramen.jpg" alt="Ramen">
+            <h2>Ramen</h2>
+            <p>Flavorful noodles in a variety of broths, topped with sliced pork and egg.</p>
+        </div>
+        <div class="food-card" onclick="openModal('Tempura')">
+            <img src="../../asset/tempura.jpg" alt="Tempura">
+            <h2>Tempura</h2>
+            <p>Lightly battered seafood and vegetables, deep fried and served with dip.</p>
+        </div>
+        <div class="food-card" onclick="openModal('Sashimi')">
+            <img src="../../asset/sashimi.jpg" alt="Sashimi">
+            <h2>Sashimi</h2>
+            <p>Fresh slices of raw fish served with wasabi and soy sauce.</p>
+        </div>
+        <div class="food-card" onclick="openModal('Soba')">
+            <img src="../../asset/soba.jpg" alt="Soba">
+            <h2>Soba</h2>
+            <p>Delicate buckwheat noodles, served cold or in hot broth.</p>
+        </div>
+    </section>
+    <!-- Modal -->
+    <div class="modal-bg" id="modalBg">
+        <div class="modal" id="modalContent">
+            <button class="close-btn" onclick="closeModal()">X</button>
+            <h2 id="modalTitle"></h2>
+            <p id="modalText"></p>
+        </div>
+    </div>
+    <!-- Carousel -->
+    <section class="carousel" id="carouselContainer">
+        <h2>Featured Tokyo Dishes</h2>
+        <div class="carousel-slide" id="carouselSlide"></div>
+        <button onclick="prevSlide()">Prev</button>
+        <button onclick="nextSlide()">Next</button>
+    </section>
+    <!-- Restaurants -->
+    <div class="restaurant-section">
+        <h2>Popular Tourist Restaurants in Tokyo</h2>
+        <ul class="restaurant-list">
+            <li>
+                <a href="https://www.tableall.com/restaurant/55" target="_blank">Sushi Arai</a> — The Chef Arai sushi experience
+            </li>
+            <li>
+                <a href="https://www.ichiran.com/en/" target="_blank">Ichiran Ramen</a> — famous for solo ramen booths.
+            </li>
+            <li>
+                <a href="https://shangu.jp/" target="_blank">Nishiazabu Shangu</a> — a luxious resaurant
+            </li>
+            <li>
+                <a href="https://www.gonpachi.jp/" target="_blank">Gonpachi</a> — izakaya made famous by Kill Bill.
+            </li>
+            <li>
+                <a href="https://www.ukai.co.jp/english/ginza/" target="_blank">Ukai-tei</a> — upscale teppanyaki experience.
+            </li>
+        </ul>
+        <p>Or <strong>find more on <a href="https://www.timeout.com/tokyo/restaurants" target="_blank">Time Out Tokyo</a></strong></p>
+    </div>
+    <!-- Reviews -->
+    <div class="review-section">
+        <h3>Share Your Favorite Japanese Dish!</h3>
+        <div class="reviews-list" id="reviewsList"></div>
+        <form id="reviewForm">
+            <label for="dish">Dish Name:</label>
+            <input type="text" id="dish" name="dish" required>
+            <label for="review">Why do you love this dish?</label>
+            <textarea id="review" name="review" rows="3" required></textarea>
+            <button type="submit">Add Review</button>
+        </form>
+    </div>
+    <!-- Link to JavaScript: shared script (root) and page-specific script (this folder) -->
+    <script src="../../script.js" defer></script>
+    <script src="food.js" defer></script>
+</body>
+</html>
