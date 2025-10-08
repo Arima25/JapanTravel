@@ -79,35 +79,38 @@ function chargeThemeLocalStorage() {
 }
 
 
+// Optional user-cards + search (only run when the template and container exist)
 const userCardTemplate = document.querySelector("[data-user-template]")
 const userCardContainer = document.querySelector("[data-user-cards-container]")
-const searchInput = document.querySelector("[data-search]")
+const cardSearchInput = document.querySelector("[data-search]")
 
 let users = []
 
-searchInput.addEventListener("input", e => {
-  const value = e.target.value.toLowerCase()
-  users.forEach(user => {
-    const isVisible =
-      user.name.toLowerCase().includes(value) ||
-      user.email.toLowerCase().includes(value)
-    user.element.classList.toggle("hide", !isVisible)
-  })
-})
-
-fetch("https://jsonplaceholder.typicode.com/users")
-  .then(res => res.json())
-  .then(data => {
-    users = data.map(user => {
-      const card = userCardTemplate.content.cloneNode(true).children[0]
-      const header = card.querySelector("[data-header]")
-      const body = card.querySelector("[data-body]")
-      header.textContent = user.name
-      body.textContent = user.email
-      userCardContainer.append(card)
-      return { name: user.name, email: user.email, element: card }
+if (cardSearchInput && userCardTemplate && userCardContainer) {
+  cardSearchInput.addEventListener("input", e => {
+    const value = e.target.value.toLowerCase()
+    users.forEach(user => {
+      const isVisible =
+        user.name.toLowerCase().includes(value) ||
+        user.email.toLowerCase().includes(value)
+      user.element.classList.toggle("hide", !isVisible)
     })
   })
+
+  fetch("https://jsonplaceholder.typicode.com/users")
+    .then(res => res.json())
+    .then(data => {
+      users = data.map(user => {
+        const card = userCardTemplate.content.cloneNode(true).children[0]
+        const header = card.querySelector("[data-header]")
+        const body = card.querySelector("[data-body]")
+        header.textContent = user.name
+        body.textContent = user.email
+        userCardContainer.append(card)
+        return { name: user.name, email: user.email, element: card }
+      })
+    })
+}
 
 // --- Simple search for featured destinations on the index page ---
 function initFeaturedSearch() {
@@ -144,3 +147,152 @@ function initFeaturedSearch() {
 
 // Initialize featured search on DOM ready
 document.addEventListener('DOMContentLoaded', initFeaturedSearch);
+
+// Robust Leaflet map initializer
+(function initLeafletMap() {
+  function createMap() {
+    var mapDiv = document.getElementById('japanLeafletMap');
+    if (!mapDiv) {
+      console.log('[map] #japanLeafletMap not found in DOM.');
+      return;
+    }
+
+    if (typeof L === 'undefined') {
+      console.error('[map] Leaflet (L) is not loaded. Ensure the Leaflet script is included before this script or that scripts load correctly.');
+      return;
+    }
+
+    try {
+      var map = L.map('japanLeafletMap').setView([36, 138], 5);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 8,
+        minZoom: 4,
+        attribution: '© OpenStreetMap contributors'
+      }).addTo(map);
+
+      const regions = [
+        ["Hokkaido", 43.2203, 142.8635, "https://www.youtube.com/watch?v=1zFy0MDIwB4"],
+        ["Tohoku", 39.7197, 140.1025, "https://www.youtube.com/watch?v=bRimtN3sfzU"],
+        ["Kanto", 36.2048, 138.2529, "https://www.youtube.com/watch?v=mu-0CoEPWqA"],
+        ["Chubu", 37.4275, 137.1860, "https://www.youtube.com/watch?v=VKDmuUdUvzs"],
+        ["Kansai", 34.9867, 135.7580, "https://www.youtube.com/watch?v=fyD1mwasLkA"],
+        ["Chugoku", 34.6851, 133.8461, "https://www.youtube.com/watch?v=O4IvOmbXZtI"],
+        ["Shikoku", 33.4429, 133.0490, "https://www.youtube.com/watch?v=LSYkcWxx5C4"],
+        ["Kyushu", 32.3182, 130.7976, "https://www.youtube.com/watch?v=bRimtN3sfzU"],
+        ["Okinawa", 26.2124, 127.6809, "https://www.youtube.com/watch?v=TwdU_CoUFR8"]
+      ];
+
+      regions.forEach(([name, lat, lng, url]) => {
+        L.circleMarker([lat, lng], {
+          radius: 14,
+          color: '#B7262A',
+          fillColor: '#aad2fa',
+          fillOpacity: 0.9,
+          weight: 3
+        })
+        .addTo(map)
+        .bindTooltip(name, {permanent:true, offset:[0,-15], direction:"top", className:"japan-map-label"})
+        .on("click", function(){
+          window.open(url, '_blank');
+        });
+      });
+
+      // If the map is inside hidden elements, it's sometimes necessary to invalidate size:
+      if (typeof map.invalidateSize === 'function') map.invalidateSize();
+
+      console.log('[map] Leaflet map initialized.');
+    } catch (err) {
+      console.error('[map] Error initializing Leaflet map:', err);
+    }
+  }
+
+  // Try on DOMContentLoaded and as a fallback on window.load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', createMap);
+    window.addEventListener('load', createMap);
+  } else {
+    createMap();
+  }
+})();
+
+/**
+ * Fetches and displays the latest Japan travel news headlines.
+ * Uses GNews API. Replace 'YOUR_API_KEY_HERE' with a valid API key.
+ * Renders news cards inside #live-news-cards if present.
+ */
+function loadJapanTravelNews() {
+  const newsContainer = document.getElementById('live-news-cards');
+  if (!newsContainer) return;
+
+  // Optionally, show a loading indicator
+  newsContainer.innerHTML = '<div class="live-news-loading">Loading latest news...</div>';
+  const url = "https://api.thenewsapi.com/v1/news/top?api_token=7f7rfXcQTQT4ei37bw5JvDcAZPNxIKbz5NxBN429&search=japan%20travel&language=en&limit=6";
+  fetch(url)
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(`Network response not ok (${res.status})`);
+      }
+      return res.json();
+    })
+    .then(data => {
+      console.log('[news] raw response:', data);
+      // TheNewsAPI may return articles under different keys; try common ones
+      const articles = Array.isArray(data.articles)
+        ? data.articles
+        : Array.isArray(data.data)
+        ? data.data
+        : Array.isArray(data.results)
+        ? data.results
+        : [];
+
+      if (!articles.length) {
+        newsContainer.innerHTML = '<div class="live-news-empty">No recent news found.</div>';
+        return;
+      }
+
+      const placeholder = 'asset/wuxia.png';
+      const html = articles.map(article => {
+        // Prefer article.image, but guard against empty or common placeholder URLs
+        let imgSrc = article.image || '';
+        const lower = (imgSrc || '').toLowerCase();
+        if (!imgSrc || lower.includes('placeholder') || lower.endsWith('.png') && lower.indexOf('asset/') === -1) {
+          imgSrc = placeholder;
+        }
+        const imgTag = `<img src="${imgSrc}" alt="${(article.title||'News').replace(/"/g,'')}" loading="lazy">`;
+        return `
+          <div class="live-news-card">
+            ${imgSrc ? imgTag : ''}
+            <div>
+              <a class="live-news-headline" href="${article.url || article.link || '#'}" target="_blank" rel="noopener">${article.title || article.name || 'Untitled'}</a>
+              <div class="live-news-summary">${article.description || article.summary || ''}</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+      newsContainer.innerHTML = `<div class="live-news-container">${html}</div>`;
+      showSnackbar('News updated');
+    })
+    .catch(err => {
+      console.error('[news] fetch error:', err);
+      newsContainer.innerHTML = `<div class="live-news-error">Could not load news at this time. ${err.message}</div>`;
+      showSnackbar('Could not load news');
+    });
+}
+
+// Optionally, call on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', loadJapanTravelNews);
+
+// Simple snackbar helper (vanilla)
+function showSnackbar(text, timeout = 2500) {
+  let el = document.querySelector('.snackbar');
+  if (!el) {
+    el = document.createElement('div');
+    el.className = 'snackbar';
+    document.body.appendChild(el);
+  }
+  el.textContent = text;
+  el.classList.add('show');
+  clearTimeout(el._hideTimer);
+  el._hideTimer = setTimeout(() => el.classList.remove('show'), timeout);
+}
+

@@ -14,13 +14,14 @@
 background-repeat: no-repeat;
         background-size: cover;
         background-attachment: fixed;
-        
-        
-        
       }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="https://cdn.glitch.com/3a6f3d54-6dab-4b7f-80a3-76673a27ba78%2F1_8MXuM9R-DDqCZxHqOBkmzw.0.0.jpeg?v=1626283286967">
+    <!-- Leaflet CSS and JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-control-geocoder@2.3.0/dist/Control.Geocoder.js"></script>
+  <link rel="icon" href="https://cdn.glitch.com/3a6f3d54-6dab-4b7f-80a3-76673a27ba78%2F1_8MXuM9R-DDqCZxHqOBkmzw.0.0.jpeg?v=1626283286967">
 <!-- bootstrap -->
     
   </head>
@@ -33,18 +34,18 @@ background-repeat: no-repeat;
      </div>
      
       </section>
- 
-    <style>
-      h2{
-        color: purple;
-          font-weight: bold;
-        font-size: 20px;
-        text-align: left;
-      }
-    </style>
-    <div class="container">
+
+ <section class="header1">
+  <div class="container">
+    <img src="https://cdn.glitch.global/3a6f3d54-6dab-4b7f-80a3-76673a27ba78/triptok.png" alt="TripTok logo" class="header-logo">
+    <h1 class="main-header-title">A Small Tour Guide of Japan</h1>
+    <div class="main-header-accent"></div>
+  </div>
+</section>
+
       
     <!--nav-->
+    <div>
 <nav>
     <ul>
       <li class="home">
@@ -66,84 +67,59 @@ background-repeat: no-repeat;
     </nav>
     
     </div>
-<h1 >
- A small tour guide of Japan
-    </h1>
-     <style>
-    h1{
-    font-family: 'Georgia';
-    font-size: 100px;
-    margin-top: 35px;
-      text-align:center;
-        padding-bottom:30px;
-}
-    </style> 
+
     
     
-    <h2 class="travel">
-        Travel across Japan
-      </h2>
-     <!--search bar --> 
-    <div class="input-group">
-        <input id="search-input" type="text" class="form-control" placeholder="Search city" />
-      <div class="input-group-append">
-        <button id="search-btn" type="button" class="input-group-text btn">
-          Search
-        </button>
-        
-        </div>
-      </div>
+   <div id="japanLeafletMap" style="height:500px; width:100%; max-width:800px; margin:32px auto;"></div>
+
+  <!-- Small information box below the map -->
+  <div class="map-info" role="note" aria-label="Map usage tip">
+    <i class="fa-solid fa-play-circle" aria-hidden="true"></i>
+    <span>Tip: Click any pin on the map to watch a short video about that region.</span>
+  </div>
+
+  <!-- Live news section: restored so script.js can populate it -->
+  <section class="live-news-section">
+    <h2 class="section-title">Japan Travel News</h2>
+    <div id="live-news-cards"></div>
+  </section>
+
 
       
-    <p 
-       style="padding: 10px; border: 2px solid red;color: black;
-        font-weight: bold;
-        font-size: 25px;
-        text-align: center;
-        background-color:#E28282;
-      ">Japan, a nation in East Asia, is an archipelago of 6,852 islands in the Pacific Ocean. It is a constitutional monarchy, with Tokyo as its capital. More than 99% of the population speaks Japanese. The economy of Japan is the third largest in the world after the United States and the People's Republic of China.</p>
-    
-    <!--card-->
-    <div class="flex-container">
-  <div class="card1">
-       <div class="maincontainer">
-          
+  <!-- Redesigned Fun Fact / GIF Section -->
+<div class="funfact-section">
+  <div class="funfact-flex-row">
+    <div class="funfact-card maincontainer">
       <div class="thecard">
-        
-        <div class="thefront"><bold>Fun fact about Japan</bold>  </div>
+        <div class="thefront">
+          <span>Fun fact about Japan</span>
+        </div>
         <div class="theback">
-        <ul>
-          <li class="center">
-          The traditional Christmas Eve meal is KFC!
-          </li>
+          <ul>
+            <li>The traditional Christmas Eve meal is KFC!</li>
           </ul>
         </div>
-          </div>
+      </div>
     </div>
-      </div>
-  <div class="img">
-      <img
-      src="https://cdn.glitch.com/3a6f3d54-6dab-4b7f-80a3-76673a27ba78%2Fce46f26726b0fe01fabc2415d04ebd90.gif?v=1626374893388"
-      
-    />
-      </div>
-  <div class="card2">
-    <div class="maincontainer">
-          
+    <div class="funfact-gif">
+      <img src="https://cdn.glitch.com/3a6f3d54-6dab-4b7f-80a3-76673a27ba78%2Fce46f26726b0fe01fabc2415d04ebd90.gif?v=1626374893388"
+           alt="Japan cherry blossom gif">
+    </div>
+    <div class="funfact-card maincontainer">
       <div class="thecard">
-        
-        <div class="thefront"><bold>Fun fact about Japan</bold> </div>
-        <div class="theback"> 
-        <ul class="Japan">
-          <li class="center">
-          The world’s largest seafood market is the Tsukiji fish market in Tokyo!
-          </li>
-        </ul>
+        <div class="thefront">
+          <span>Fun fact about Japan</span>
         </div>
-          </div>
-    </div>
+        <div class="theback">
+          <ul>
+            <li>The world’s largest seafood market is the Tsukiji fish market in Tokyo!</li>
+          </ul>
+        </div>
       </div>
+    </div>
   </div>
+</div>
+
     
     <!--featured destination-->
 <section class="features">
@@ -442,12 +418,12 @@ Famous for hot springs, natural beauty and the view across Lake Ashinoko of near
           </h4>
           <p><i class="fa-brands fa-instagram"></i>TripTok-eer2liera</p>
           <p><i class="fa-brands fa-facebook"></i>TripTok</p>
-          <p><i class="fa-brands fa-youtube"></i>AWT_Poke</p>
+          <p><i class="fa-brands fa-youtube"></i>Arima</p>
         </div>
         
         <div>
           <hr>
-          <p class="copyright">Made with <i class="fa-solid fa-dragon"></i>by AWT_Poke/Emerson/Arima</p>
+          <p class="copyright">Made with <i class="fa-solid fa-dragon"></i>by Junye/Emerson/Arima</p>
             
           
         </div>

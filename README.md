@@ -14,27 +14,10 @@ There are two easy ways to view the site locally. Both work on Windows (PowerShe
 
 1) Open the files directly (quickest):
 
-```powershell
-start 'c:\Users\Mewtw\Desktop\JapanTravel\index.html'
+```Vs code
+Directly run the code via vs code with "run without debugging"
 ```
 
-2) Run a minimal local web server (recommended — mirrors production behavior):
-
-If you have Python 3 installed, from the project root run:
-
-```powershell
-cd 'c:\Users\Mewtw\Desktop\JapanTravel'
-python -m http.server 8000
-# then open http://localhost:8000/index.html
-```
-
-Or with Node.js (if you prefer):
-
-```powershell
-cd 'c:\Users\Mewtw\Desktop\JapanTravel'
-npx http-server -p 8000
-# then open http://localhost:8000/index.html
-```
 
 ## Search feature (how to use)
 - The search bar on the main page filters the featured destinations (Tokyo, Kyoto, Hakone).
