@@ -19,11 +19,6 @@ Directly run the code via vs code with "run without debugging"
 ```
 
 
-## Search feature (how to use)
-- The search bar on the main page filters the featured destinations (Tokyo, Kyoto, Hakone).
-- Enter the city name (or partial) and press `Enter` or click `Search` to filter results.
-- Clear the search box and press `Enter` to show all featured destinations again.
-
 ## Notes about file paths
 - Files in `subPages/` reference the root `style.css` and `script.js` using relative paths (`../style.css` and `../script.js`) so they work both when opened directly and when served from a server.
 - If you move files into subfolders, check and update paths accordingly.

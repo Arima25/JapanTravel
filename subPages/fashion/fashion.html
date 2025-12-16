@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+        <meta charset="UTF-8">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <!-- Import the webpage's stylesheet -->
+  <link rel="stylesheet" href="../../style.css" />
+  <link rel="stylesheet" href="fashion.css">
+<!--logo/emoji-->
+    <script src="https://kit.fontawesome.com/a9df419de0.js" crossorigin="anonymous"></script>
+  <!-- Import the webpage's javascript file -->
+  <script src="../../script.js" defer></script>
+  </head>
+
+    <body>
+        <nav>
+            <ul class="nav-links">
+                <li class="home">
+                    <a href="../../index.html">Home</a>
+                </li>
+                <li class="red">
+                    <a href="../food/food.html">Food</a>
+                </li>
+                <li class="blue">
+                    <a href="../culture.html">Culture</a>
+                </li>
+                <li class="black">
+                    <a href="fashion.html" class="active">Fashion</a>
+                </li>
+                <li class="green">
+                    <a href="../navigate.html">Most visited</a>
+                </li>
+            </ul>
+        </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1><span class="accent">TOKYO</span> FASHION</h1>
+            <p class="hero-subtitle">Discover trends. Find your style. Shop smart.</p>
+            <button class="cta-primary" onclick="document.querySelector('.looks-section').scrollIntoView({behavior: 'smooth'})">Explore Now</button>
+        </div>
+    </section>
+
+    <!-- Looks Section -->
+    <section class="looks-section" id="fashion">
+        <h2>Looks of the Moment</h2>
+        <div class="looks-grid">
+            <div class="looks-grid-item">
+                <img src="https://static.zenmarket.jp/images/misc/7fca079a651d469ba9dd16efbf44f7ae/p1iciar3v49n5qp5pfjluoqme.jpg" alt="Harajuku Style">
+                <div class="looks-overlay">
+                    <h3>Dark Street</h3>
+                    <p>sports shoes, dark colors, deep layers</p>
+                    <div class="looks-overlay-cta">View this style <arrow></div>
+                </div>
+            </div>
+            <div class="looks-grid-item">
+                <img src="https://images.baycrews.jp/itemimages/i/20/040/410/20040410003730_ma_001_N_org.jpg" alt="Minimal Tokyo">
+                <div class="looks-overlay">
+                    <h3>Clean Minimal</h3>
+                    <p>Neutral tones, oversized fit, premium basics</p>
+                    <div class="looks-overlay-cta">View this style <arrow></arrow></div>
+                </div>
+            </div>
+            <div class="looks-grid-item">
+                <img src="https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/cf0b0da2ffce4b6bfbdea64ef45f1463.jpg?imageMogr2/auto-orient%7CimageView2/2/w/800/q/70/format/webp" alt="Kimono">
+                <div class="looks-overlay">
+                    <h3>Traditional Kimono</h3>
+                    <p>Elegant silk, cultural heritage, ceremonial wear</p>
+                    <div class="looks-overlay-cta">View this style <arrow></arrow></div>
+                </div>
+            </div>
+            <div class="looks-grid-item">
+                <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=300&fit=crop" alt="Techwear">
+                <div class="looks-overlay">
+                    <h3>Techwear</h3>
+                    <p>Dark technical fabrics, futuristic vibes</p>
+                    <div class="looks-overlay-cta">View this style →</div>
+                </div>
+            </div>
+            <div class="looks-grid-item">
+                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=400&h=500&fit=crop" alt="Vintage Mix">
+                <div class="looks-overlay">
+                    <h3>Vintage Mix</h3>
+                    <p>90s inspired, playful patterns, retro vibes</p>
+                    <div class="looks-overlay-cta">View this style →</div>
+                </div>
+            </div>
+            <div class="looks-grid-item">
+                <img src="https://i.pinimg.com/originals/ac/5f/c8/ac5fc86145c6d40656a5171a000798a1.png" alt="Casual Shibuya">
+                <div class="looks-overlay">
+                    <h3>Trendy Casual</h3>
+                    <p>Street fashion, accessible, always fresh</p>
+                    <div class="looks-overlay-cta">View this style →</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trends Section -->
+    <section class="trends-section">
+        <div style="max-width: 1400px; margin: 0 auto;">
+            <h2>What Tokyo is Wearing Now</h2>
+            <div class="carousel-container">
+                <div class="trends-carousel" id="trendsCarousel">
+                    <div class="trend-card">
+                        <img src="https://images.baycrews.jp/itemimages/i/20/040/410/20040410003730_ma_001_N_org.jpg" alt="Clean Minimal Trend">
+                        <div class="trend-info">
+                            <h3>Clean Minimal</h3>
+                            <p>Neutral • Oversized • Premium</p>
+                            <div class="trend-stat">40% of Tokyo right now</div>
+                        </div>
+                    </div>
+                    <div class="trend-card">
+                        <img src="https://i.pinimg.com/736x/bf/78/ef/bf78ef596542ec96727f8d1ce30e5a25.jpg" alt="Dark Street Trend">
+                        <div class="trend-info">
+                            <h3>Dark Street</h3>
+                            <p>Colorful • Playful • Bold</p>
+                            <div class="trend-stat">35% in Harajuku</div>
+                        </div>
+                    </div>
+                    <div class="trend-card">
+                        <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=300&h=240&fit=crop" alt="Techwear Trend">
+                        <div class="trend-info">
+                            <h3>Techwear Edge</h3>
+                            <p>Dark • Technical • Futuristic</p>
+                            <div class="trend-stat">25% in Shibuya</div>
+                        </div>
+                    </div>
+                    <div class="trend-card">
+                        <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=300&h=240&fit=crop" alt="Vintage Trend">
+                        <div class="trend-info">
+                            <h3>Vintage Revival</h3>
+                            <p>90s • Retro • Curated</p>
+                            <div class="trend-stat">30% trend seekers</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Districts Section -->
+    <section>
+        <h2>Where to Find It</h2>
+        <div class="districts-section">
+            <div class="districts-map">
+                🗺️ Japan Fashion Map
+            </div>
+            <div class="districts-list">
+                <div class="district-card">
+                    <h3>Harajuku</h3>
+                    <p>Neon streetwear, vintage shops, youth culture</p>
+                    <div class="district-tags">
+                        <span class="tag tag-budget">Budget</span>
+                        <span class="tag tag-mid">Mid</span>
+                    </div>
+                    <div class="district-arrow">Explore →</div>
+                </div>
+                <div class="district-card">
+                    <h3>Shibuya</h3>
+                    <p>Trendy youth fashion, big department stores</p>
+                    <div class="district-tags">
+                        <span class="tag tag-mid">Mid</span>
+                        <span class="tag tag-luxury">Luxury</span>
+                    </div>
+                    <div class="district-arrow">Explore →</div>
+                </div>
+                <div class="district-card">
+                    <h3>Ginza</h3>
+                    <p>Luxury brands, high-end boutiques, prestige</p>
+                    <div class="district-tags">
+                        <span class="tag tag-luxury">Luxury</span>
+                    </div>
+                    <div class="district-arrow">Explore →</div>
+                </div>
+                <div class="district-card">
+                    <h3>Shinjuku</h3>
+                    <p>Large malls, late-night shopping, diversity</p>
+                    <div class="district-tags">
+                        <span class="tag tag-budget">Budget</span>
+                        <span class="tag tag-mid">Mid</span>
+                    </div>
+                    <div class="district-arrow">Explore →</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Budget Section -->
+    <section>
+        <h2>Shopping Guide & Budgets</h2>
+        <div class="budget-blocks">
+            <div class="budget-block budget">
+                <div class="budget-icon">¥</div>
+                <h3>Budget</h3>
+                <p>¥2,000–¥5,000 per item. GU, Uniqlo, second-hand shops in Shimokitazawa.</p>
+                <div class="budget-areas">
+                    <span class="tag tag-budget">Shimokitazawa</span>
+                    <span class="tag tag-budget">Takeshita</span>
+                </div>
+            </div>
+            <div class="budget-block midrange">
+                <div class="budget-icon">¥¥</div>
+                <h3>Mid-Range</h3>
+                <p>¥5,000–¥15,000 per item. Popular malls, select boutiques, trendy chains.</p>
+                <div class="budget-areas">
+                    <span class="tag tag-mid">Shibuya 109</span>
+                    <span class="tag tag-mid">Shinjuku</span>
+                </div>
+            </div>
+            <div class="budget-block luxury">
+                <div class="budget-icon">¥¥¥</div>
+                <h3>Luxury</h3>
+                <p>¥15,000+. Designer boutiques, flagship stores, premium experience.</p>
+                <div class="budget-areas">
+                    <span class="tag tag-luxury">Ginza</span>
+                    <span class="tag tag-luxury">Omotesando</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section class="quiz-section">
+        <h2>What's Your Japan Style?</h2>
+        <p class="quiz-subtitle">Answer 3 questions, get personalized recommendations</p>
+        <div class="quiz-container">
+            <div class="quiz-progress" id="quizProgress">
+                <div class="progress-dot active"></div>
+                <div class="progress-dot"></div>
+                <div class="progress-dot"></div>
+            </div>
+
+            <!-- Question 1 -->
+            <div class="quiz-question active" id="q1">
+                <div class="question-text">How do you prefer to dress?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="answerQuestion(1, 'colorful', event)">Colorful & Bold</div>
+                    <div class="quiz-option" onclick="answerQuestion(1, 'minimal', event)">Minimal & Clean</div>
+                    <div class="quiz-option" onclick="answerQuestion(1, 'vintage', event)">Vintage & Retro</div>
+                    <div class="quiz-option" onclick="answerQuestion(1, 'edgy', event)">Edgy & Modern</div>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="quiz-question" id="q2">
+                <div class="question-text">Your favorite hangout?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="answerQuestion(2, 'harajuku', event)">Harajuku Streets</div>
+                    <div class="quiz-option" onclick="answerQuestion(2, 'shibuya', event)">Shibuya Shops</div>
+                    <div class="quiz-option" onclick="answerQuestion(2, 'shimokita', event)">Shimokitazawa Vintage</div>
+                    <div class="quiz-option" onclick="answerQuestion(2, 'ginza', event)">Ginza Boutiques</div>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="quiz-question" id="q3">
+                <div class="question-text">What's your vibe?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="answerQuestion(3, 'trendy', event)">Always Trendy</div>
+                    <div class="quiz-option" onclick="answerQuestion(3, 'timeless', event)">Timeless & Elegant</div>
+                    <div class="quiz-option" onclick="answerQuestion(3, 'experimental', event)">Experimental & Unique</div>
+                    <div class="quiz-option" onclick="answerQuestion(3, 'comfort', event)">Comfort First</div>
+                </div>
+            </div>
+
+            <!-- Result -->
+            <div class="quiz-result" id="quizResult">
+                <div class="result-badge">✨</div>
+                <div class="result-name" id="resultName">Harajuku Creative</div>
+                <p class="result-description">You're all about bold self-expression and colorful vibes. Harajuku is your playground!</p>
+                <div class="result-recommendations">
+                    <div class="result-card">
+                        <h4>Style</h4>
+                        <p id="resultStyle">Dark Street</p>
+                    </div>
+                    <div class="result-card">
+                        <h4>Shopping Area</h4>
+                        <p id="resultArea">Harajuku</p>
+                    </div>
+                </div>
+                <button class="cta-primary" onclick="restartQuiz()">Try Again</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experiences Section -->
+    <section>
+        <h2>Fashion Experiences</h2>
+        <div class="experiences-grid">
+            <div class="experience-card">
+                <div class="experience-image">
+                    <img src="https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit1600900gsm/eventThirdParty/2024/09/24/791c499e-757c-47ec-870e-e3962f6e4ea5-1727121503031-1567762206821fa4290860bed9f89845.jpg" alt="Kimono Rental">
+                </div>
+                <div class="experience-content">
+                    <div>
+                        <h3>Kimono Rental & Photoshoot</h3>
+                        <p>Experience traditional Japanese fashion with professional photos at iconic locations.</p>
+                        <div class="experience-meta">
+                            <span class="meta-item">2-3 hours</span>
+                            <span class="meta-item">¥5,000-8,000</span>
+                            <span class="meta-item">Photo-ready</span>
+                        </div>
+                    </div>
+                    <a href="#" class="experience-cta">Learn More →</a>
+                </div>
+            </div>
+            <div class="experience-card">
+                <div class="experience-image">
+                    <img src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=400&h=280&fit=crop" alt="Personal Shopping">
+                </div>
+                <div class="experience-content">
+                    <div>
+                        <h3>Personal Shopping Tour</h3>
+                        <p>Get styled by a local fashion expert in Harajuku or Shibuya. Discover hidden gems and trends.</p>
+                        <div class="experience-meta">
+                            <span class="meta-item">3-4 hours</span>
+                            <span class="meta-item">¥8,000-15,000</span>
+                            <span class="meta-item">Customized</span>
+                        </div>
+                    </div>
+                    <a href="#" class="experience-cta">Learn More →</a>
+                </div>
+            </div>
+            <div class="experience-card">
+                <div class="experience-image">
+                    <img src="https://www.pelago.com/img/products/JP-Japan/shimokitazawa-private-vintage-shopping-tour/a2fda3b4-0e30-4848-abb1-eb6030dedabe_shimokitazawa-private-vintage-shopping-tour-xlarge.jpg" alt="Vintage Shop Crawl">
+                </div>
+                <div class="experience-content">
+                    <div>
+                        <h3>Vintage Shop Crawl</h3>
+                        <p>Explore hidden vintage stores in Shimokitazawa with a local guide. Find unique treasures and upcycled pieces.</p>
+                        <div class="experience-meta">
+                            <span class="meta-item">2-3 hours</span>
+                            <span class="meta-item">¥3,000-6,000</span>
+                            <span class="meta-item">Treasure hunt</span>
+                        </div>
+                    </div>
+                    <a href="#" class="experience-cta">Learn More →</a>
+                </div>
+            </div>
+            <div class="experience-card">
+                <div class="experience-image">
+                    <img src="https://images.squarespace-cdn.com/content/v1/51d151b1e4b05d425c859fc9/1550696939419-5C7OECC08L4ML8193NCD/Tokyu+Hands_japan-selections_makeup_beauty_where-to-buy.jpg" alt="Nail & Makeup">
+                </div>
+                <div class="experience-content">
+                    <div>
+                        <h3>Kawaii Nail & Makeup</h3>
+                        <p>Get a complete Japanese-style makeover with trendy nails and makeup at a top Harajuku salon.</p>
+                        <div class="experience-meta">
+                            <span class="meta-item">1-2 hours</span>
+                            <span class="meta-item">¥4,000-7,000</span>
+                            <span class="meta-item">Instagram-ready</span>
+                        </div>
+                    </div>
+                    <a href="#" class="experience-cta">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Japan Travel Fashion Guide. Your gateway to Tokyo style. Discover | Explore | Shop Smart</p>
+    </footer>
+
+        <script src="fashion.js"></script>
+  </body>
+</html>

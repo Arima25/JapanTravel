@@ -1,66 +1,3 @@
-/*
-This is your site JavaScript code - you can add interactivity and carry out processing
-- Initially the JS writes a message to the console, and rotates a button you can add from the README
-*/
-
-// Print a message in the browser's dev tools console each time the page loads
-// Use your menus or right-click / control-click and choose "Inspect" > "Console"
-console.log("Hello 🌎");
-
-/* 
-Make the "Click me!" button rotate when the visitor clicks it:
-- First add the button to the page by following the "Next steps" in the README
-*/
-const btn = document.querySelector("button"); // Get the button from the page
-// Detect clicks on the button (use addEventListener and guard for existence)
-if (btn) {
-  btn.addEventListener('click', () => {
-    // The JS works in conjunction with the 'rotated' code in style.css
-    btn.classList.toggle("rotated");
-  });
-}
-
-// This is a single line JS comment
-/*
-This is a comment that can span multiple lines 
-- use comments to make your own notes!
-*/
-
-
-const modeSelector = document.querySelector('.mode');
-const theme = document.querySelector('#change-theme');
-let themeDark = true;
-
-eventsListener();
-
-function eventsListener() {
-  // Restore theme only if the theme link element exists
-  if (theme) {
-    document.addEventListener('DOMContentLoaded', () => {
-      chargeThemeLocalStorage();
-    });
-  }
-  // Attach mode toggle click only if the element exists
-  if (modeSelector) {
-    modeSelector.addEventListener('click', changeMode);
-  }
-}
-
-function changeMode() {
-  // Nothing to do if required elements are missing
-  if (!theme || !modeSelector) return;
-  if (themeDark) {
-    theme.href = 'stylesheets/theme-light.css';
-    modeSelector.classList.add('mode--right');
-  }
-  else {
-    theme.href = 'stylesheets/theme-dark.css';
-    modeSelector.classList.remove('mode--right');
-  }
-  saveThemeLocalStorage(theme.href);
-  themeDark = !themeDark;
-}
-
 function saveThemeLocalStorage(themeHref) {
   if (!themeHref) return;
   localStorage.setItem('themeSocial', themeHref);
@@ -76,40 +13,6 @@ function chargeThemeLocalStorage() {
       modeSelector.classList.add('mode--right');
     }
   }
-}
-
-
-// Optional user-cards + search (only run when the template and container exist)
-const userCardTemplate = document.querySelector("[data-user-template]")
-const userCardContainer = document.querySelector("[data-user-cards-container]")
-const cardSearchInput = document.querySelector("[data-search]")
-
-let users = []
-
-if (cardSearchInput && userCardTemplate && userCardContainer) {
-  cardSearchInput.addEventListener("input", e => {
-    const value = e.target.value.toLowerCase()
-    users.forEach(user => {
-      const isVisible =
-        user.name.toLowerCase().includes(value) ||
-        user.email.toLowerCase().includes(value)
-      user.element.classList.toggle("hide", !isVisible)
-    })
-  })
-
-  fetch("https://jsonplaceholder.typicode.com/users")
-    .then(res => res.json())
-    .then(data => {
-      users = data.map(user => {
-        const card = userCardTemplate.content.cloneNode(true).children[0]
-        const header = card.querySelector("[data-header]")
-        const body = card.querySelector("[data-body]")
-        header.textContent = user.name
-        body.textContent = user.email
-        userCardContainer.append(card)
-        return { name: user.name, email: user.email, element: card }
-      })
-    })
 }
 
 // --- Simple search for featured destinations on the index page ---
@@ -226,9 +129,33 @@ function loadJapanTravelNews() {
 
   // Optionally, show a loading indicator
   newsContainer.innerHTML = '<div class="live-news-loading">Loading latest news...</div>';
-  const url = "https://api.thenewsapi.com/v1/news/top?api_token=7f7rfXcQTQT4ei37bw5JvDcAZPNxIKbz5NxBN429&search=japan%20travel&language=en&limit=6";
-  fetch(url)
+  // --- News provider configuration ---
+  const NEWS_PROVIDER = 'newsdata'; // alternatives could be 'gnews' or 'newsapi'
+  // IMPORTANT: Put your Newsdata.io API key below as a string, e.g. 'pub_XXXXXXXXXXXX'
+  const NEWS_API_KEY = 'YOUR_NEWS_API_KEY';
+
+  if (!NEWS_API_KEY || NEWS_API_KEY === 'YOUR_NEWS_API_KEY') {
+    newsContainer.innerHTML = '<div class="live-news-error">News API key not set. Add your Newsdata.io API key in script.js.</div>';
+    console.warn('[news] NEWS_API_KEY missing — please add your Newsdata.io API key in script.js');
+    return;
+  }
+
+  let url = '';
+  if (NEWS_PROVIDER === 'newsdata') {
+    // Query 'japan travel' and prefer Japanese/English sources
+    url = `https://newsdata.io/api/1/news?apikey=${encodeURIComponent(NEWS_API_KEY)}&q=japan%20travel&language=en&page=1&country=jp`;
+  } else {
+    // fallback to theNewsAPI if provider changed
+    url = `https://api.thenewsapi.com/v1/news/top?api_token=${NEWS_API_KEY}&search=japan%20travel&language=en&limit=6`;
+  }
+
+  // Add a timeout so it won't stay stuck on "Loading" forever
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 12000);
+
+  fetch(url, { signal: controller.signal })
     .then(res => {
+      clearTimeout(timeoutId);
       if (!res.ok) {
         throw new Error(`Network response not ok (${res.status})`);
       }
@@ -236,9 +163,11 @@ function loadJapanTravelNews() {
     })
     .then(data => {
       console.log('[news] raw response:', data);
-      // TheNewsAPI may return articles under different keys; try common ones
+      // Try common response shapes across providers
       const articles = Array.isArray(data.articles)
         ? data.articles
+        : Array.isArray(data.results)
+        ? data.results
         : Array.isArray(data.data)
         ? data.data
         : Array.isArray(data.results)
@@ -251,20 +180,28 @@ function loadJapanTravelNews() {
       }
 
       const placeholder = 'asset/wuxia.png';
-      const html = articles.map(article => {
-        // Prefer article.image, but guard against empty or common placeholder URLs
-        let imgSrc = article.image || '';
+      // Newsdata.io returns results[] with fields like title, link, description, image_url
+      const slice = articles.slice(0, 6); // show up to 6 items
+      const html = slice.map(article => {
+        const title = article.title || article.name || 'Untitled';
+        const urlLink = article.link || article.url || article.source || '#';
+        const desc = article.description || article.summary || article.content || '';
+
+        // Prefer common image fields used by providers
+        let imgSrc = article.image_url || article.image || article.thumbnail || '';
         const lower = (imgSrc || '').toLowerCase();
-        if (!imgSrc || lower.includes('placeholder') || lower.endsWith('.png') && lower.indexOf('asset/') === -1) {
+        // If image is missing or appears to be a generic placeholder or an external svg placeholder, use local fallback
+        if (!imgSrc || lower.includes('placeholder') || (lower.endsWith('.svg') && !lower.includes('/asset/'))) {
           imgSrc = placeholder;
         }
-        const imgTag = `<img src="${imgSrc}" alt="${(article.title||'News').replace(/"/g,'')}" loading="lazy">`;
+
+        const imgTag = `<img src="${imgSrc}" alt="${title.replace(/"/g,'')}" loading="lazy">`;
         return `
           <div class="live-news-card">
             ${imgSrc ? imgTag : ''}
             <div>
-              <a class="live-news-headline" href="${article.url || article.link || '#'}" target="_blank" rel="noopener">${article.title || article.name || 'Untitled'}</a>
-              <div class="live-news-summary">${article.description || article.summary || ''}</div>
+              <a class="live-news-headline" href="${urlLink}" target="_blank" rel="noopener">${title}</a>
+              <div class="live-news-summary">${desc}</div>
             </div>
           </div>
         `;
@@ -274,7 +211,8 @@ function loadJapanTravelNews() {
     })
     .catch(err => {
       console.error('[news] fetch error:', err);
-      newsContainer.innerHTML = `<div class="live-news-error">Could not load news at this time. ${err.message}</div>`;
+      const msg = err.name === 'AbortError' ? 'Request timed out.' : err.message;
+      newsContainer.innerHTML = `<div class="live-news-error">Could not load news at this time. ${msg}</div>`;
       showSnackbar('Could not load news');
     });
 }
