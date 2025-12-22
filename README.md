@@ -1,4 +1,4 @@
-# JapanTravel -- Currently under redevelopment for further improvement 
+# JapanTravel -- Currently developed, further update in future
 
 A small static site showcasing travel information about Japan. This project is a set of HTML pages, a central stylesheet (`style.css`) and a small `script.js` which adds some interactivity (search, simple UI behaviors).
 
@@ -7,7 +7,7 @@ A small static site showcasing travel information about Japan. This project is a
 - `index.html` — Main landing page (featured destinations, search bar, gallery, footer).
 - `style.css` — Global styles used by the site.
 - `script.js` — Small client-side JavaScript (rotating button sample, theme helpers, and a featured search implementation).
-- `subPages/` — Folder with additional pages: `culture.html`, `fashion.html`, `food.html`, `navigate.html`.
+- `subPages/` — Folder with additional pages: `culture.html`, `fashion.html`, `food.html`, `Itineraries.html`.
 
 ## How to open locally
 There are two easy ways to view the site locally. Both work on Windows (PowerShell) and any OS.
